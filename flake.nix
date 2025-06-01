@@ -38,6 +38,9 @@
             # Nix
             programs.nixfmt.enable = true;
 
+            # Java
+            programs.google-java-format.enable = true;
+
             # GitHub Actions
             programs.actionlint.enable = true;
 
