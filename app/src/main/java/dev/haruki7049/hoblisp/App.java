@@ -3,12 +3,19 @@
  */
 package dev.haruki7049.hoblisp;
 
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.Options;
+
 public class App {
   public String getGreeting() {
     return "Hello World!";
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws ParseException {
+    Options options = new Options();
+
+    options.addOption("t", true, "HOGE");
+
     System.out.println(new App().getGreeting());
   }
 }

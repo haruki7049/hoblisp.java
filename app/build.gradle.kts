@@ -21,6 +21,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    // Apache Commons CLI
+    implementation("commons-cli:commons-cli:1.9.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
