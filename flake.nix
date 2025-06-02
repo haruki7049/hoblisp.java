@@ -35,25 +35,23 @@
             version = "0.1.0";
             src = lib.cleanSource ./.;
 
+            gradleBuildTask = "build";
+
             nativeBuildInputs = [
               pkgs.gradle
               pkgs.makeWrapper
+              pkgs.unzip
             ];
-
-            #mitmCache = pkgs.gradle.fetchDeps {
-            #  inherit pname;
-            #  data = ./deps.json;
-            #};
-
-            #__darwinAllowLocalNetworking = true;
 
             installPhase = ''
               mkdir -p $out/bin
-              mkdir -p $out/share/hoblisp
+              mkdir -p $out/share
               mkdir -p $out/opt
 
-              cp build/distributions/hoblisp.java.zip $out/opt
-              unzip $out/opt/hoblisp.java.zip
+              cp -r build/distributions/source.tar $out/opt
+              tar xf $out/opt/source.tar -C $out/share
+
+              ln -s $out/share/source/bin/source $out/bin/hoblisp-java
             '';
           };
         in
