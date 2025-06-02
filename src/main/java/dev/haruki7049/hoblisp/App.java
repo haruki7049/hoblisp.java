@@ -10,7 +10,10 @@ public class App {
 }
 
 class HoblispCLI implements Callable<Integer> {
-  @CommandLine.Option(names = {"-h", "--help"}, description = "show this help", usageHelp = true)
+  @CommandLine.Option(
+      names = {"-h", "--help"},
+      description = "show this help",
+      usageHelp = true)
   boolean showHelp;
 
   @CommandLine.Parameters(paramLabel = "NAME")
