@@ -16,13 +16,27 @@ class HoblispCLI implements Callable<Integer> {
       usageHelp = true)
   boolean showHelp;
 
-  @CommandLine.Parameters(paramLabel = "NAME")
-  String name;
+  @CommandLine.Parameters(paramLabel = "SCRIPT")
+  String script;
 
   @Override
   public Integer call() throws Exception {
-    String message = String.format("Hi, %s!!", this.name);
-    System.out.println(message);
+    Machine machine = new Machine(script);
+    Integer result = machine.eval();
+
+    return result;
+  }
+}
+
+class Machine {
+  String script;
+
+  Machine(String sc) {
+    this.script = sc;
+  }
+
+  Integer eval() throws Exception {
+    System.out.println(String.format("Your script: %s", this.script));
 
     return 0;
   }
