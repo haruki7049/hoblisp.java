@@ -51,6 +51,8 @@
 
               ln -s $out/share/source/bin/source $out/bin/hoblisp-java
             '';
+
+            meta.mainProgram = "hoblisp-java";
           };
         in
         {
