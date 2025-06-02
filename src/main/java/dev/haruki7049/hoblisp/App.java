@@ -5,6 +5,7 @@ package dev.haruki7049.hoblisp;
 
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.HelpFormatter;
 
 public class App {
   public String getGreeting() {
@@ -13,6 +14,7 @@ public class App {
 
   public static void main(String[] args) throws ParseException {
     Options options = new Options();
+    HelpFormatter hf = new HelpFormatter();
 
     options.addOption("t", true, "HOGE");
 
