@@ -39,8 +39,6 @@
 
             nativeBuildInputs = [
               pkgs.gradle
-              pkgs.makeWrapper
-              pkgs.unzip
             ];
 
             installPhase = ''
