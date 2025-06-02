@@ -10,21 +10,10 @@ plugins {
     application
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
-
 dependencies {
-    // Use TestNG framework, also requires calling test.useTestNG() below
-    testImplementation(libs.testng)
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
-
     // picocli
     // https://picocli.info
-    implementation("info.picocli:picocli:4.2.0")
+    implementation(fileTree(mapOf("dir" to "libs", "include" to arrayOf("*.jar"))))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

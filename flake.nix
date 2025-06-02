@@ -1,6 +1,4 @@
 {
-  description = "A core's flake";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
@@ -31,6 +29,34 @@
           system,
           ...
         }:
+        let
+          hoblisp = pkgs.stdenv.mkDerivation rec {
+            pname = "hoblisp-java";
+            version = "0.1.0";
+            src = lib.cleanSource ./.;
+
+            nativeBuildInputs = [
+              pkgs.gradle
+              pkgs.makeWrapper
+            ];
+
+            #mitmCache = pkgs.gradle.fetchDeps {
+            #  inherit pname;
+            #  data = ./deps.json;
+            #};
+
+            #__darwinAllowLocalNetworking = true;
+
+            installPhase = ''
+              mkdir -p $out/bin
+              mkdir -p $out/share/hoblisp
+              mkdir -p $out/opt
+
+              cp build/distributions/hoblisp.java.zip $out/opt
+              unzip $out/opt/hoblisp.java.zip
+            '';
+          };
+        in
         {
           treefmt = {
             projectRootFile = "flake.nix";
@@ -50,6 +76,11 @@
             # ShellScript
             programs.shellcheck.enable = true;
             programs.shfmt.enable = true;
+          };
+
+          packages = {
+            inherit hoblisp;
+            default = hoblisp;
           };
 
           devShells.default = pkgs.mkShell {
